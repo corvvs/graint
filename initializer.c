@@ -6,9 +6,28 @@ void	initsystem(t_system *system)
 {
 	*system = (t_system){
 		.dt = 0.001,
-		.n = 100000000ull,
+		.n = 1000000000ull,
 		.i = 0,
-		.output_period = 1000,
+		.output_period = 10000,
+		.m1 = 1.98892e30,
+		.r1 = {0, 0, 0},
+		.v1 = {0, 0, 0},
+		.m2 = 5.972e24,
+		.r2 = {1.5e8, 0, 0},
+		.v2 = {0, 2.566080e6, 0},
+		.m3 = 1.0e14,
+		.r3 = {-1.8e8, 0, 0},
+		.v3 = {0, -2.1e6, 0},
+	};
+}
+
+void	initsystem_horseshoe(t_system *system)
+{
+	*system = (t_system){
+		.dt = 0.001,
+		.n = 1000000000ull,
+		.i = 0,
+		.output_period = 10000,
 		.m1 = 1.98892e30,
 		.r1 = {0, 0, 0},
 		.v1 = {0, 0, 0},
@@ -16,13 +35,13 @@ void	initsystem(t_system *system)
 		.r2 = {1.5e8, 0, 0},
 		.v2 = {0, 2.566080e6, 0},
 		.m3 = 5.0e22,
-		.r3 = {2.6e8, 0, 0},
-		.v3 = {0, 9.9e5, 0},
+		.r3 = {-2.6e8, 0, 0},
+		.v3 = {0, -1.e6, 0},
 	};
 }
 
-// 馬蹄型軌道を与える初期値
-void	initsystem_horseshoe(t_system *system)
+// 「逆」馬蹄型軌道を与える初期値
+void	initsystem_horseshoe_reversed(t_system *system)
 {
 	*system = (t_system){
 		.dt = 0.001,

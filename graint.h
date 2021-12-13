@@ -58,6 +58,7 @@ double		vector_dot(t_vector3 *r1, t_vector3 *r2);
 typedef		void (t_system_initializer)(t_system*);
 void		initsystem(t_system *system);
 void		initsystem_horseshoe(t_system *system);
+void		initsystem_horseshoe_reversed(t_system *system);
 void		initsystem_curing_tape(t_system *system);
 void		initsystem_quasi_sattelite(t_system *system);
 void		initsystem_kidney_bean(t_system *system);
