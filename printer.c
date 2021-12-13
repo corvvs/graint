@@ -1,12 +1,15 @@
 #include "graint.h"
 #define FMT "%.10e"
+#define FMT2 FMT " " FMT
+#define FMT6 FMT2 " " FMT2 " " FMT2
+#define FMT3 FMT " " FMT " " FMT
 
 // 位置を出力する
 void	print_system(t_system *system)
 {
 	if (system->i % system->output_period != 0)
 		return ;
-	printf(FMT " " FMT " " FMT " " FMT " " FMT " " FMT "\n",
+	printf(FMT6 "\n",
 		system->r1.x, system->r1.y,
 		system->r2.x, system->r2.y,
 		system->r3.x, system->r3.y
@@ -27,7 +30,7 @@ void	print_centroid(t_system *system)
 	vector_mul(&temp, &system->r3, system->m3);
 	vector_add(&centroid, &centroid, &temp);
 	vector_mul(&centroid, &centroid, 1 / (system->m1 + system->m2 + system->m3));
-	printf(FMT " " FMT " " FMT " " FMT " " FMT " " FMT "\n",
+	printf(FMT6 "\n",
 		system->r1.x - centroid.x, system->r1.y - centroid.y,
 		system->r2.x - centroid.x, system->r2.y - centroid.y,
 		system->r3.x - centroid.x, system->r3.y - centroid.y
@@ -40,7 +43,7 @@ void	print_12(t_system *system)
 	if (system->i % system->output_period != 0)
 		return ;
 	double phi = atan2(system->r2.y - system->r1.y, system->r2.x - system->r1.x);
-	printf(FMT " " FMT " " FMT " " FMT " " FMT " " FMT "\n",
+	printf(FMT6 "\n",
 		(system->r1.x - system->r1.x) * cos(phi) + (system->r1.y - system->r1.y) * sin(phi), -(system->r1.x - system->r1.x) * sin(phi) + (system->r1.y - system->r1.y) * cos(phi),
 		(system->r2.x - system->r1.x) * cos(phi) + (system->r2.y - system->r1.y) * sin(phi), -(system->r2.x - system->r1.x) * sin(phi) + (system->r2.y - system->r1.y) * cos(phi),
 		(system->r3.x - system->r1.x) * cos(phi) + (system->r3.y - system->r1.y) * sin(phi), -(system->r3.x - system->r1.x) * sin(phi) + (system->r3.y - system->r1.y) * cos(phi)
@@ -56,7 +59,7 @@ void	print_conservative(t_system *system)
 	if (system->i % system->output_period != 0)
 		return ;
 	l = angular_momentum(system);
-	printf(FMT " " FMT " " FMT " " FMT "\n",
+	printf(FMT3 " " FMT "\n",
 		l.x, l.y, l.z, mechanical_energy(system));
 }
 

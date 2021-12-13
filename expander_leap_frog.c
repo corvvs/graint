@@ -1,5 +1,6 @@
 #include "graint.h"
 
+// リープフロッグ法による時間発展
 void	expand_leap_frog(t_system *system)
 {
 	t_vector3	f;

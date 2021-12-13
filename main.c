@@ -35,8 +35,8 @@ void	print_profile(t_system *system)
 int main()
 {
 	t_system				system;
-	t_system_initializer	*initializer = initsystem_curing_tape;
-	t_system_expander		*expander = expand_leap_frog;
+	t_system_initializer	*initializer = initsystem;
+	t_system_expander		*expander = expand_euler;
 	t_system_printer		*printer = print_12;
 
 	initializer(&system);

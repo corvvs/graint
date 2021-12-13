@@ -1,5 +1,6 @@
 #include "graint.h"
 
+// オイラー法による時間発展
 void	expand_euler(t_system *system)
 {
 	t_vector3	f1 = force(system->m2, &system->r1, &system->r2);

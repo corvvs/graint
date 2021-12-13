@@ -18,6 +18,7 @@ t_vector3	angular_momentum(t_system *system)
 	return i;
 }
 
+// 力学的エネルギー
 double	mechanical_energy(t_system *system)
 {
 	double	e = 0;
