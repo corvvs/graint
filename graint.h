@@ -50,7 +50,7 @@ void		expand_leap_frog(t_system *system);
 
 typedef	void (t_system_expander)(t_system*);
 
-double		angular_momentum(t_system *system);
+t_vector3	angular_momentum(t_system *system);
 double		mechanical_energy(t_system *system);
 
 void		print_system(t_system *system, size_t i);

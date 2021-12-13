@@ -1,6 +1,7 @@
 #include "graint.h"
 
-double	angular_momentum(t_system *system)
+// 角運動量
+t_vector3	angular_momentum(t_system *system)
 {
 	t_vector3	f;
 	t_vector3	i = {0};
@@ -14,7 +15,7 @@ double	angular_momentum(t_system *system)
 	vector_cross(&f, &system->r3, &system->v3);
 	vector_mul(&f, &f, system->m3);
 	vector_add(&i, &i, &f);
-	return i.z;
+	return i;
 }
 
 double	mechanical_energy(t_system *system)
