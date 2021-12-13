@@ -2,9 +2,9 @@
 #define FMT "%.10e"
 
 // 位置を出力する
-void	print_system(t_system *system, size_t i)
+void	print_system(t_system *system)
 {
-	if (i % 10000 != 0)
+	if (system->i % system->output_period != 0)
 		return ;
 	printf(FMT " " FMT " " FMT " " FMT " " FMT " " FMT "\n",
 		system->r1.x, system->r1.y,
@@ -14,9 +14,9 @@ void	print_system(t_system *system, size_t i)
 }
 
 // 重心系における位置を出力する
-void	print_centroid(t_system *system, size_t i)
+void	print_centroid(t_system *system)
 {
-	if (i % 3 != 0)
+	if (system->i % system->output_period != 0)
 		return ;
 	t_vector3 centroid = {0};
 	t_vector3 temp;
@@ -35,9 +35,9 @@ void	print_centroid(t_system *system, size_t i)
 }
 
 // 物体1を中心とし、物体1から物体2へのベクトルがX軸正方向に一致するように回転する系における位置を出力する
-void	print_12(t_system *system, size_t i)
+void	print_12(t_system *system)
 {
-	if (i % 10000 != 0)
+	if (system->i % system->output_period != 0)
 		return ;
 	double phi = atan2(system->r2.y - system->r1.y, system->r2.x - system->r1.x);
 	printf(FMT " " FMT " " FMT " " FMT " " FMT " " FMT "\n",
@@ -50,15 +50,18 @@ void	print_12(t_system *system, size_t i)
 // 保存量を出力する
 // 1: 角運動量(のz成分)
 // 2: 力学的エネルギー
-void	print_conservative(t_system *system, size_t i)
+void	print_conservative(t_system *system)
 {
-	if (i % 10000 == 0)
-		printf("%.10e %.10e\n", angular_momentum(system), mechanical_energy(system));
+	t_vector3	l;
+	if (system->i % system->output_period != 0)
+		return ;
+	l = angular_momentum(system);
+	printf(FMT " " FMT " " FMT " " FMT "\n",
+		l.x, l.y, l.z, mechanical_energy(system));
 }
 
 // 何も出力しない
-void	print_nop(t_system *system, size_t i)
+void	print_nop(t_system *system)
 {
 	(void)system;
-	(void)i;
 }

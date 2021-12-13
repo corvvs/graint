@@ -1,17 +1,18 @@
 #include "graint.h"
 
+// 時間発展を実行
 void	run(t_system *system, t_system_expander expand_time, t_system_printer print)
 {
-	size_t	i = 0;
-
-	while (i < system->n)
+	system->i = 0;
+	while (system->i < system->n)
 	{
 		expand_time(system);
-		print(system, i);
-		i += 1;
+		print(system);
+		system->i += 1;
 	}
 }
 
+// 系の情報を表示
 void	print_profile(t_system *system)
 {
 	printf("# times:            %zu\n", system->n);
@@ -33,34 +34,12 @@ void	print_profile(t_system *system)
 
 int main()
 {
-	t_system	system = { // kidney-bean
-		.dt = 0.001,
-		.n = 100000000ull,
-		.m1 = 1.98892e30,
-		.r1 = {0, 0, 0},
-		.v1 = {0, 0, 0},
-		.m2 = 5.972e24,
-		.r2 = {1.5e8, 0, 0},
-		.v2 = {0, 2.566080e6, 0},
-		.m3 = 1.2e24,
-		// .m3 = 1.3e14,
-		.r3 = {1.54e8, 0, 0},
-		// .v3 = {0, 2.414768e6, 0}, // stable
-		.v3 = {0, 2.490768e6, 0},
-	};
-	// t_system	system = { // kidney-bean
-	// 	.dt = 0.001,
-	// 	.n = 100000000ull,
-	// 	.m1 = 1.98892e30,
-	// 	.r1 = {0, 0, 0},
-	// 	.v1 = {0, 0, 0},
-	// 	.m2 = 5.972e24,
-	// 	.r2 = {1.5e8, 0, 0},
-	// 	.v2 = {0, 2.566080e6, 0},
-	// 	.m3 = 1.3e14,
-	// 	.r3 = {1.589e8, 0, 0},
-	// 	.v3 = {0, 1.380768e6, 0},
-	// };
+	t_system				system;
+	t_system_initializer	*initializer = initsystem_curing_tape;
+	t_system_expander		*expander = expand_leap_frog;
+	t_system_printer		*printer = print_12;
+
+	initializer(&system);
 	print_profile(&system);
-	run(&system, expand_leap_frog, print_system);
+	run(&system, expander, printer);
 }

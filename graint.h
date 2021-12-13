@@ -42,22 +42,26 @@ void		vector_mul(t_vector3 *ans, t_vector3 *r1, double d);
 void		vector_cross(t_vector3 *ans, t_vector3 *r1, t_vector3 *r2);
 double		vector_dot(t_vector3 *r1, t_vector3 *r2);
 
+void		initsystem_curing_tape(t_system *system);
+void		initsystem_quasi_sattelite(t_system *system);
+void		initsystem_kidney_bean(t_system *system);
+typedef		void (t_system_initializer)(t_system*);
+
+
 double		potential(double m, t_vector3 *r_me, t_vector3 *r_you);
 t_vector3	force(double m, t_vector3 *r_me, t_vector3 *r_you);
 
 void		expand_euler(t_system *system);
 void		expand_leap_frog(t_system *system);
-
-typedef	void (t_system_expander)(t_system*);
+typedef		void (t_system_expander)(t_system*);
 
 t_vector3	angular_momentum(t_system *system);
 double		mechanical_energy(t_system *system);
 
-void		print_system(t_system *system, size_t i);
-void		print_centroid(t_system *system, size_t i);
-void		print_12(t_system *system, size_t i);
-void		print_nop(t_system *system, size_t i);
-
-typedef	void (t_system_printer)(t_system*, size_t);
+void		print_system(t_system *system);
+void		print_centroid(t_system *system);
+void		print_12(t_system *system);
+void		print_nop(t_system *system);
+typedef		void (t_system_printer)(t_system*);
 
 #endif
