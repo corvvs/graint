@@ -5,8 +5,8 @@
 # include <stdio.h>
 # include <math.h>
 
-# define G 0.132777734
-// G in [Re^3 Me^-1 d^-2]
+//# define G 6.67408e-11 // [m^3kg^-1s^-2]
+# define G 4.98217402e-10 // [km^3kg^-1day^-2]
 
 typedef struct s_vector3
 {

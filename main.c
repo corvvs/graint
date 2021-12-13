@@ -33,19 +33,34 @@ void	print_profile(t_system *system)
 
 int main()
 {
-	t_system	system = {
-		.dt = 0.00001,
-		.n = 10000000000ull,
-		.m1 = 1,
-		.r1 = { 0.0, 0, 0},
-		.v1 = { 0, 0.1, 0},
-		.m2 = 0.02,
-		.r2 = { 10, 0, 0},
-		.v2 = { 0, 0.2, 0},
-		.m3 = 0.0002,
-		.r3 = { 11, 0, 0},
-		.v3 = { 0, 0.24, 0},
+	t_system	system = { // kidney-bean
+		.dt = 0.001,
+		.n = 100000000ull,
+		.m1 = 1.98892e30,
+		.r1 = {0, 0, 0},
+		.v1 = {0, 0, 0},
+		.m2 = 5.972e24,
+		.r2 = {1.5e8, 0, 0},
+		.v2 = {0, 2.566080e6, 0},
+		.m3 = 1.2e24,
+		// .m3 = 1.3e14,
+		.r3 = {1.54e8, 0, 0},
+		// .v3 = {0, 2.414768e6, 0}, // stable
+		.v3 = {0, 2.490768e6, 0},
 	};
+	// t_system	system = { // kidney-bean
+	// 	.dt = 0.001,
+	// 	.n = 100000000ull,
+	// 	.m1 = 1.98892e30,
+	// 	.r1 = {0, 0, 0},
+	// 	.v1 = {0, 0, 0},
+	// 	.m2 = 5.972e24,
+	// 	.r2 = {1.5e8, 0, 0},
+	// 	.v2 = {0, 2.566080e6, 0},
+	// 	.m3 = 1.3e14,
+	// 	.r3 = {1.589e8, 0, 0},
+	// 	.v3 = {0, 1.380768e6, 0},
+	// };
 	print_profile(&system);
-	run(&system, expand_leap_frog, print_centroid);
+	run(&system, expand_leap_frog, print_system);
 }
