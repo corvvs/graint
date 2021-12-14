@@ -8,4 +8,6 @@
 
 https://cooperative-nutmeg-ef9.notion.site/7052c4b90945428bbb2f6466934a99af
 
+### 動作
 
+Macでしか確認してません。
