@@ -50,6 +50,34 @@ void	print_12(t_system *system)
 	);
 }
 
+// 物体2を中心とし、物体2から物体1へのベクトルがX軸正方向に一致するように回転する系における位置を出力する
+void	print_21(t_system *system)
+{
+	if (system->i % system->output_period != 0)
+		return ;
+	double phi = atan2(system->r1.y - system->r2.y, system->r1.x - system->r2.x);
+	printf(FMT6 "\n",
+		(system->r1.x - system->r2.x) * cos(phi) + (system->r1.y - system->r2.y) * sin(phi), -(system->r1.x - system->r1.x) * sin(phi) + (system->r1.y - system->r2.y) * cos(phi),
+		(system->r2.x - system->r2.x) * cos(phi) + (system->r2.y - system->r2.y) * sin(phi), -(system->r2.x - system->r1.x) * sin(phi) + (system->r2.y - system->r2.y) * cos(phi),
+		(system->r3.x - system->r2.x) * cos(phi) + (system->r3.y - system->r2.y) * sin(phi), -(system->r3.x - system->r1.x) * sin(phi) + (system->r3.y - system->r2.y) * cos(phi)
+	);
+}
+
+// print_21 を基準にして、さらに角速度 0.21139146375820408 rad / day で回転する系
+void	print_21_fix_lunar(t_system *system)
+{
+	if (system->i % system->output_period != 0)
+		return ;
+	double phi = atan2(system->r1.y - system->r2.y, system->r1.x - system->r2.x);
+	double phi2 = 0.21139146375820408 * system->dt * system->i;
+	phi += phi2;
+	printf(FMT6 "\n",
+		(system->r1.x - system->r2.x) * cos(phi) + (system->r1.y - system->r2.y) * sin(phi), -(system->r1.x - system->r2.x) * sin(phi) + (system->r1.y - system->r2.y) * cos(phi),
+		(system->r2.x - system->r2.x) * cos(phi) + (system->r2.y - system->r2.y) * sin(phi), -(system->r2.x - system->r2.x) * sin(phi) + (system->r2.y - system->r2.y) * cos(phi),
+		(system->r3.x - system->r2.x) * cos(phi) + (system->r3.y - system->r2.y) * sin(phi), -(system->r3.x - system->r2.x) * sin(phi) + (system->r3.y - system->r2.y) * cos(phi)
+	);
+}
+
 // 保存量を出力する
 // 1: 角運動量(のz成分)
 // 2: 力学的エネルギー

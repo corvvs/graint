@@ -3,15 +3,15 @@
 // オイラー法による時間発展
 void	expand_euler(t_system *system)
 {
-	t_vector3	f1 = force(system->m2, &system->r1, &system->r2);
-	t_vector3	f2 = force(system->m3, &system->r2, &system->r3);
-	t_vector3	f3 = force(system->m1, &system->r3, &system->r1);
 	t_vector3	f;
-	f = force(system->m3, &system->r1, &system->r3);
+	t_vector3	f1 = accel(system->m2, &system->r1, &system->r2);
+	t_vector3	f2 = accel(system->m3, &system->r2, &system->r3);
+	t_vector3	f3 = accel(system->m1, &system->r3, &system->r1);
+	f = accel(system->m3, &system->r1, &system->r3);
 	vector_add(&f1, &f1, &f);
-	f = force(system->m1, &system->r2, &system->r1);
+	f = accel(system->m1, &system->r2, &system->r1);
 	vector_add(&f2, &f2, &f);
-	f = force(system->m2, &system->r3, &system->r2);
+	f = accel(system->m2, &system->r3, &system->r2);
 	vector_add(&f3, &f3, &f);
 	t_vector3	v;
 	// 1

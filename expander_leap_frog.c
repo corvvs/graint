@@ -4,14 +4,14 @@
 void	expand_leap_frog(t_system *system)
 {
 	t_vector3	f;
-	t_vector3	f1 = force(system->m2, &system->r1, &system->r2);
-	t_vector3	f2 = force(system->m3, &system->r2, &system->r3);
-	t_vector3	f3 = force(system->m1, &system->r3, &system->r1);
-	f = force(system->m3, &system->r1, &system->r3);
+	t_vector3	f1 = accel(system->m2, &system->r1, &system->r2);
+	t_vector3	f2 = accel(system->m3, &system->r2, &system->r3);
+	t_vector3	f3 = accel(system->m1, &system->r3, &system->r1);
+	f = accel(system->m3, &system->r1, &system->r3);
 	vector_add(&f1, &f1, &f);
-	f = force(system->m1, &system->r2, &system->r1);
+	f = accel(system->m1, &system->r2, &system->r1);
 	vector_add(&f2, &f2, &f);
-	f = force(system->m2, &system->r3, &system->r2);
+	f = accel(system->m2, &system->r3, &system->r2);
 	vector_add(&f3, &f3, &f);
 
 	t_vector3	v;
@@ -34,16 +34,16 @@ void	expand_leap_frog(t_system *system)
 	vector_mul(&v, &f3, system->dt * system->dt / 2);
 	vector_add(&system->r3, &system->r3, &v);
 
-	t_vector3	f11 = force(system->m2, &system->r1, &system->r2);
-	t_vector3	f12 = force(system->m3, &system->r2, &system->r3);
-	t_vector3	f13 = force(system->m1, &system->r3, &system->r1);
-	f = force(system->m3, &system->r1, &system->r3);
+	t_vector3	f11 = accel(system->m2, &system->r1, &system->r2);
+	t_vector3	f12 = accel(system->m3, &system->r2, &system->r3);
+	t_vector3	f13 = accel(system->m1, &system->r3, &system->r1);
+	f = accel(system->m3, &system->r1, &system->r3);
 	vector_add(&f11, &f11, &f);
 	vector_add(&f1, &f11, &f1);
-	f = force(system->m1, &system->r2, &system->r1);
+	f = accel(system->m1, &system->r2, &system->r1);
 	vector_add(&f12, &f12, &f);
 	vector_add(&f2, &f12, &f2);
-	f = force(system->m2, &system->r3, &system->r2);
+	f = accel(system->m2, &system->r3, &system->r2);
 	vector_add(&f13, &f13, &f);
 	vector_add(&f3, &f13, &f3);
 	vector_mul(&v, &f1, system->dt / 2);

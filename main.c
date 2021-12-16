@@ -1,7 +1,7 @@
 #include "graint.h"
 
 // 時間発展を実行
-void	run(t_system *system, t_system_expander expand_time, t_system_printer print)
+static void	run(t_system *system, t_system_expander expand_time, t_system_printer print)
 {
 	system->i = 0;
 	while (system->i < system->n)
@@ -13,7 +13,7 @@ void	run(t_system *system, t_system_expander expand_time, t_system_printer print
 }
 
 // 系の情報を表示
-void	print_profile(t_system *system)
+static void	print_profile(t_system *system)
 {
 	printf("# times:            %zu\n", system->n);
 	printf("# dt:               %1.8f\n", system->dt);
@@ -35,7 +35,7 @@ void	print_profile(t_system *system)
 int main()
 {
 	t_system				system;
-	t_system_initializer	*initializer = initsystem;
+	t_system_initializer	*initializer = initsystem_lagrange1;
 	t_system_expander		*expander = expand_leap_frog;
 	t_system_printer		*printer = print_12;
 

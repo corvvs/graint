@@ -57,6 +57,12 @@ double		vector_dot(t_vector3 *r1, t_vector3 *r2);
 // 系の初期化関数
 typedef		void (t_system_initializer)(t_system*);
 void		initsystem(t_system *system);
+void		initsystem_3bodies(t_system *system);
+void		initsystem_3bodies2(t_system *system);
+void		initsystem_solar(t_system *system);
+void		initsystem_lagrange1(t_system *system);
+void		initsystem_lagrange4(t_system *system);
+void		initsystem_narrow_shoe(t_system *system);
 void		initsystem_horseshoe(t_system *system);
 void		initsystem_horseshoe_reversed(t_system *system);
 void		initsystem_curing_tape(t_system *system);
@@ -65,7 +71,7 @@ void		initsystem_kidney_bean(t_system *system);
 
 
 double		potential(double m, t_vector3 *r_me, t_vector3 *r_you);
-t_vector3	force(double m, t_vector3 *r_me, t_vector3 *r_you);
+t_vector3	accel(double m, t_vector3 *r_me, t_vector3 *r_you);
 
 // 系の時間発展関数
 typedef		void (t_system_expander)(t_system*);
@@ -79,6 +85,8 @@ double		mechanical_energy(t_system *system);
 void		print_system(t_system *system);
 void		print_centroid(t_system *system);
 void		print_12(t_system *system);
+void		print_21(t_system *system);
+void		print_21_fix_lunar(t_system *system);
 void		print_nop(t_system *system);
 typedef		void (t_system_printer)(t_system*);
 

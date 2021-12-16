@@ -5,6 +5,125 @@
 void	initsystem(t_system *system)
 {
 	*system = (t_system){
+		.dt = 0.0001,
+		.n = 120000000ull,
+		.i = 0,
+		.output_period = 5000,
+		.m1 = 1.98892e28,
+		.r1 = {-5e8, 0, 0},
+		.v1 = {0, -5e6, 0},
+		.m2 = 1.98892e28,
+		.r2 = {+5e8, 0, 0},
+		.v2 = {0, +5e6, 0},
+		.m3 = 1.98892e32,
+		.r3 = {0, -1e10, 0},
+		.v3 = {0, 1e8, 0},
+	};
+}
+
+void	initsystem_3bodies2(t_system *system)
+{
+	*system = (t_system){
+		.dt = 0.0001,
+		.n = 120000000ull,
+		.i = 0,
+		.output_period = 5000,
+		.m1 = 1.98892e30,
+		.r1 = {0, 0, 0},
+		.v1 = {0, 0, 0},
+		.m2 = 1.98892e30,
+		.r2 = {1.5e8, 0, 0},
+		.v2 = {0, 2.566080e6, 0},
+		.m3 = 1.98892e32,
+		.r3 = {0, 3.84400e8, 0},
+		.v3 = {0, 2.2550580e5, 0},
+	};
+}
+void	initsystem_3bodies(t_system *system)
+{
+	*system = (t_system){
+		.dt = 0.0001,
+		.n = 120000000ull,
+		.i = 0,
+		.output_period = 5000,
+		.m1 = 1.98892e30,
+		.r1 = {0, 0, 0},
+		.v1 = {0, 0, 0},
+		.m2 = 1.98892e30,
+		.r2 = {1.5e8, 0, 0},
+		.v2 = {0, 2.566080e6, 0},
+		.m3 = 1.98892e30,
+		.r3 = {0, 3.84400e8, 0},
+		.v3 = {0, 2.6550580e5, 0},
+	};
+}
+
+void	initsystem_lagrange1(t_system *system)
+{
+	double	m1 = 1.98892e30;
+	double	m2 = 5.972e24;
+	double	r2 = 1.5e8;
+	double	v2 = 2.566080e6;
+	double	r3 = 148500000.0;
+	double	v3 = v2 * (r3 / r2) * 1.0009;
+	*system = (t_system){
+		.dt = 0.001,
+		.n = 10000000ull,
+		.i = 0,
+		.output_period = 100,
+		.m1 = m1,
+		.r1 = {0, 0, 0},
+		.v1 = {0, 0, 0},
+		.m2 = m2,
+		.r2 = {r2, 0, 0},
+		.v2 = {0, v2, 0},
+		.m3 = 7.34581e3,
+		.r3 = {r3, 0, 0},
+		.v3 = { 0, v3, 0},
+	};
+}
+
+void	initsystem_solar(t_system *system)
+{
+	*system = (t_system){
+		.dt = 0.001,
+		.n = 1000000ull,
+		.i = 0,
+		.output_period = 100,
+		.m1 = 1.98892e30,
+		.r1 = {0, 0, 0},
+		.v1 = {0, 0, 0},
+		.m2 = 5.972e24,
+		.r2 = {1.5e8, 0, 0},
+		.v2 = {0, 2.566080e6, 0},
+		.m3 = 7.34581e22,
+		.r3 = {1.5e8 + 3.84400e5 , 0, 0},
+		.v3 = { 0, 2.6550580e6, 0},
+	};
+}
+
+void	initsystem_lagrange4(t_system *system)
+{
+	*system = (t_system){
+		.dt = 0.001,
+		.n = 10000000ull,
+		.i = 0,
+		.output_period = 1000,
+		.m1 = 1.98892e30,
+		.r1 = {0, 0, 0},
+		.v1 = {0, 0, 0},
+		.m2 = 5.972e24,
+		.r2 = {1.5e8, 0, 0},
+		.v2 = {0, 2.566080e6, 0},
+		.m3 = 1.0e2,
+		.r3 = {75000000.00000001, 129903810.56766579, 0},
+		.v3 = {-2223450.468143172, 1281040.0000000002, 0},
+	};
+}
+
+void	initsystem_narrow_shoe(t_system *system)
+{
+	*system = (t_system){
 		.dt = 0.001,
 		.n = 1000000000ull,
 		.i = 0,
