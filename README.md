@@ -6,7 +6,7 @@
 
 ### 記事
 
-https://cooperative-nutmeg-ef9.notion.site/7052c4b90945428bbb2f6466934a99af
+https://qiita.com/corvvs/items/173b983a9a19ac5fe017
 
 ### 動作
 
